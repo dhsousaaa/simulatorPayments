@@ -1,14 +1,10 @@
+require('dotenv').config()
 const fs = require('fs');
 const request = require('request');
 const sha1 = require('sha1');
 const urlRetorno = "https://dev.pjbank.com.br/subadquirente/api/retornos/put";
 const urlProcessaRetorno = "https://dev.pjbank.com.br/subadquirente/api/publico/protectedliquidarretorno";
 
-// App token: e25d2163-6fff-335f-9edf-e1b627d660c7
-
-// Secret: d25aed54-84ed-3b5e-b669-3a8378760389
-
-// Access token: 8ba20656-bc26-3bd4-ae6a-8eaf5c12644e (válido apenas para esta licença: subadquirentete-002)
 
 async function createFileForSandbox(params)
 {
@@ -80,8 +76,8 @@ function uploadFile()
     };
     request.post({
         headers: {
-            app_token: "e25d2163-6fff-335f-9edf-e1b627d660c7",
-            access_token: "8ba20656-bc26-3bd4-ae6a-8eaf5c12644e"
+            app_token: process.env.APP_TOKEN,
+            access_token: process.env.ACCESS_TOKEN
         },
         url: urlRetorno,
         formData: formData
