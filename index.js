@@ -47,7 +47,7 @@ async function createFileForSandbox(params)
     fs.writeFile("./files/retorno.txt", headerOne + headerTwo + segmentoT + segmentoU + headerThree, function(err){
         //Caro ocorra algum erro
         if (err){
-            return console.log('erro:' + err)
+            throw err;
         }
         //Caso não tenha erro, retornaremos a mensagem de sucesso
         console.log('Arquivo Criado');
@@ -58,7 +58,11 @@ async function createFileForSandbox(params)
 function deleteFileForSandbox()
 {
     try {
-        fs.unlink("./files/retorno.txt");
+        fs.unlink("./files/retorno.txt", (err) => {
+            if ( err) {
+                throw err
+            }
+        });
     } catch (error) {
         console.log('Erro excluir arquivo: ' + err);
         throw error;
