@@ -86,6 +86,8 @@ function uploadFile()
             console.log("erro no upload "+err)
             throw err;
         }
+
+        console.log('Processado com sucesso!');
     });
 }
 
